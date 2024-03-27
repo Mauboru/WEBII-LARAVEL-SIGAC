@@ -41,7 +41,7 @@ class AlunoController extends Controller {
             $obj->password = Hash::make($request->password); 
             $obj->curso()->associate($objCurso);
             $obj->turma()->associate($objTurma);
-            $this->repository->save($obj);
+            return $this->repository->save($obj);
         }
     }
 

@@ -1,7 +1,7 @@
 @extends('templates/site')
 
 @section('conteudo')
-    <form action="{{ route('site.submit') }}" method="POST">
+    <form action="{{ route('site.register') }}" method="POST">
         @csrf
         <h2 class="text-success fw-bold">REGISTRO DO ALUNO</h2>
         <x-textbox name="nome" label="Nome" type="text" value="null" disabled="false"/>
@@ -23,15 +23,16 @@
             let curso_id = this.value
 
             $.getJSON('/api/turma/'+curso_id, function(data) {
-                $('#turma_id').children().remove().end()
+                console.log(data); //tirar depois - by kayuer
+                $('#turma_id').children().remove().end();
 
                 data.map((item) => {
-                    $('#turma_id').append(new Option(item.ano, item.id))
+                    $('#turma_id').append(new Option(item.ano, item.id));
                 });
 
                 $('#turma_id').removeAttr('disabled');
             });
-            // $('#id').attr('enable', 'disabled');  
+            //$('#id').attr('enable', 'disabled');  
         });
     </script>
 @endsection
