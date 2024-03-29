@@ -1,7 +1,6 @@
 @extends('templates/'.$template, ['titulo'=> $titulo])
 
 @section('conteudo')
-
     <div class="row">
         <div class="col-2">
             @if($type == "success")
@@ -25,6 +24,4 @@
             <x-button label="OK" type="" route="{{$link}}" color="dark"/>
         </div>
     </div>
-
 @endsection
-

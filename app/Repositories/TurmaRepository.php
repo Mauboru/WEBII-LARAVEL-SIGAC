@@ -9,4 +9,4 @@ class TurmaRepository extends Repository {
     public function __construct() {
         parent::__construct(new Turma());
     }   
-}
+}   
