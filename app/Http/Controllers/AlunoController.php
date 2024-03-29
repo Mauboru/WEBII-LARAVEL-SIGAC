@@ -18,9 +18,8 @@ class AlunoController extends Controller {
     }
 
     public function index() {
-        $cursos = (new CursoRepository())->selectAll();
-        $turmas = (new TurmaRepository())->selectAll();
-        return view('aluno.register', compact(['cursos', 'turmas'])); 
+        $data = $this->repository->selectAllByTurmas();
+        return view('aluno.index', compact('data'));
     }
 
     public function register() {
@@ -41,8 +40,21 @@ class AlunoController extends Controller {
             $obj->password = Hash::make($request->password); 
             $obj->curso()->associate($objCurso);
             $obj->turma()->associate($objTurma);
-            return $this->repository->save($obj);
+            $this->repository->save($obj);
+
+            return view('message')
+                    ->with('template', "site")
+                    ->with('type', "success")
+                    ->with('titulo', "")
+                    ->with('message', "[OK] Registro efetuado com sucesso!")
+                    ->with('link', "site");
         }
+        return view('message')
+                    ->with('template', "site")
+                    ->with('type', "danger")
+                    ->with('titulo', "")
+                    ->with('message', "Não foi possível efetuar o registro!")
+                    ->with('link', "site");
     }
 
     public function create() {

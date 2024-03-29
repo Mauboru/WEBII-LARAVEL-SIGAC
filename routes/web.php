@@ -21,5 +21,6 @@ Route::resource('/categoria', 'App\Http\Controllers\CategoriaController');
 Route::resource('/comprovante', 'App\Http\Controllers\ComprovanteController');
 Route::resource('/declaracao', 'App\Http\Controllers\DeclaracaoController');
 
-Route::get('/site/register', 'App\Http\Controllers\AlunoController@register')->name('site.register');
-Route::post('/site/success', 'App\Http\Controllers\AlunoController@storeRegister')->name('site.submit');
+//Removi essa linha pois com ela ficava dando erro de metodo post
+//Route::get('/site/register', 'App\Http\Controllers\AlunoController@register')->name('site.register');
+Route::post('/site/register', 'App\Http\Controllers\AlunoController@storeRegister')->name('site.register');
