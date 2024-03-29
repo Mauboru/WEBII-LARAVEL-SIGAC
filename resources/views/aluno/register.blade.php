@@ -23,7 +23,6 @@
             let curso_id = this.value
 
             $.getJSON('/api/turma/'+curso_id, function(data) {
-                console.log(data); //tirar depois - by kayuer
                 $('#turma_id').children().remove().end();
 
                 data.map((item) => {

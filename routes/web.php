@@ -23,6 +23,3 @@ Route::resource('/declaracao', 'App\Http\Controllers\DeclaracaoController');
 
 Route::get('/site/register', 'App\Http\Controllers\AlunoController@register')->name('site.register');
 Route::post('/site/success', 'App\Http\Controllers\AlunoController@storeRegister')->name('site.submit');
-
-Route::get('/users/{role}', 'App\Http\Controllers\UserController@getUsersByRole')->name('users.role');
-Route::get('/users/create/{role_id}', 'App\Http\Controllers\UserController@createUsersByRole')->name('users.role.create');

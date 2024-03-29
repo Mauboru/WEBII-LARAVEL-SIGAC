@@ -68,8 +68,7 @@ class TurmaController extends Controller {
         return "<h1>Delete - Not found Turma!</h1>";
     }
 
-    public function getTurmasByCurso($value){
-        $data = $this->repository->findById('curso_id', $value);
-        return json_encode($data);
+    public function getTurmasByCurso($curso_id) {
+        return Turma::where('curso_id', $curso_id)->get();
     }
 }
