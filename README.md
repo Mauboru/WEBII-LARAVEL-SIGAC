@@ -10,3 +10,4 @@ Um site em desenvolvimento para estudo de laravel
 (<x-textbox name="curso" label="Curso" type="text" :value="$data->curso->nome" disabled="true"/>
 <x-textbox name="turma" label="Turma" type="text" :value="$data->turma->ano" disabled="true"/>)
 - Ao editar um coordenador deveria poder mudar o role?
+- A declaracao quem exige é o professor ou o aluno?
