@@ -21,7 +21,9 @@ class CursoController extends Controller {
     }
 
     public function create() {
-        //
+        $eixos = (new EixoRepository())->selectAll();
+        $niveis = (new NivelRepository())->selectAll();
+        return view('curso.create', compact(['eixos', 'niveis']));
     }
 
     public function store(Request $request) {
@@ -36,9 +38,15 @@ class CursoController extends Controller {
             $obj->eixo()->associate($objEixo);
             $obj->nivel()->associate($objNivel);
             $this->repository->save($obj);
-            //return redirect()->route('curso.index');
-            return "OK! - Inserido";
+            return redirect()->route('curso.index');
         }
+
+        return view('message')
+                    ->with('template', "main")
+                    ->with('type', "danger")
+                    ->with('titulo', "OPERAÇÃO INVÁLIDA")
+                    ->with('message', "Não foi possível efetuar o procedimento!")
+                    ->with('link', "curso.index");
     }
 
     public function show(string $id) {
