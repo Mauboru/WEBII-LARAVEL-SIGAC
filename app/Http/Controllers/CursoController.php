@@ -17,7 +17,7 @@ class CursoController extends Controller {
 
     public function index() {
         $data = $this->repository->selectAll();
-        return $data;
+        return view('curso.index', compact('data'));
     }
 
     public function create() {
