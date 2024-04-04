@@ -18,7 +18,7 @@ class AlunoController extends Controller {
     }
 
     public function index() {
-        $data = $this->repository->selectAll();
+        $data = $this->repository->selectAllByTurmas();
         return view('aluno.index', compact('data'));
     }
 
