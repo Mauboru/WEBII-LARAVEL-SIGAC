@@ -33,16 +33,36 @@ class NivelController extends Controller {
         $data = $this->repository->findById($id);
         return $data;
     }
+
+    public function edit(string $id) {
+        $data = $this->repository->findById($id);
+
+        if(isset($data)) {
+            return view('nivel.edit', compact('data'));
+        }
+        return view('message')
+                    ->with('template', "main")
+                    ->with('type', "danger")
+                    ->with('titulo', "OPERAÇÃO INVÁLIDA")
+                    ->with('message', "Não foi possível efetuar o procedimento!")
+                    ->with('link', "curso.index");
+    }
     
     public function update(Request $request, string $id) {
         $obj = $this->repository->findById($id);
+
         if(isset($obj)) {
             $obj->nome = mb_strtoupper($request->nome, 'UTF-8');
             $this->repository->save($obj);
-            return "<h1>Upate - OK!</h1>";
+            return redirect()->route('nivel.index');
         }
-
-        return "<h1>Upate - Not found Nivel!</h1>";
+        
+        return view('message')
+            ->with('template', "main")
+            ->with('type', "danger")
+            ->with('titulo', "OPERAÇÃO INVÁLIDA")
+            ->with('message', "Não foi possível efetuar o procedimento!")
+            ->with('link', "curso.index");
     }
 
     public function destroy(string $id) {
