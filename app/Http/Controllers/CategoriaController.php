@@ -45,8 +45,16 @@ class CategoriaController extends Controller {
     }
 
     public function show(string $id) {
-        $data = $this->repository->findById($id);
-        return $data;
+        $data = $this->repository->findByIdWith(['curso'], $id);
+        if(isset($data))
+            return view('categoria.show', compact('data'));
+
+        return view('message')
+                    ->with('template', "main")
+                    ->with('type', "danger")
+                    ->with('titulo', "OPERAÇÃO INVÁLIDA")
+                    ->with('message', "Não foi possível efetuar o procedimento!")
+                    ->with('link', "curso.index");
     }
 
     public function edit(string $id) {
