@@ -67,9 +67,13 @@ class NivelController extends Controller {
 
     public function destroy(string $id) {
         if($this->repository->delete($id))  {
-            return "<h1>Delete - OK!</h1>";
+            return redirect()->route('nivel.index');
         }
-        
-        return "<h1>Delete - Not found Nível!</h1>";
+        return view('message')
+            ->with('template', "main")
+            ->with('type', "danger")
+            ->with('titulo', "OPERAÇÃO INVÁLIDA")
+            ->with('message', "Não foi possível efetuar o procedimento!")
+            ->with('link', "curso.index");
     }
 }
