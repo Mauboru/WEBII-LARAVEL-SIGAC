@@ -19,14 +19,14 @@ class EixoController extends Controller {
     }
 
     public function create() {
-        // retorna, para o usuário, a view de criação de Eixo
+        return view('eixo.create');
     }
 
     public function store(Request $request) {
         $obj = new Eixo();
         $obj->nome = mb_strtoupper($request->nome, 'UTF-8');
         $this->repository->save($obj);
-        return "<h1>Store - OK!</h1>";
+        return redirect()->route('eixo.index');
     }
 
     public function show(string $id) {
