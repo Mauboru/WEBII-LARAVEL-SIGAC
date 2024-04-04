@@ -6,6 +6,7 @@
         @method('PUT')
         <x-textbox name="nome" label="Nome" type="text" :value="$data->nome" disabled="false"/>
         <x-textbox name="cpf" label="CPF" type="number" :value="$data->cpf" disabled="false"/>
+        <x-textbox name="email" label="EMAIL" type="email" :value="$data->email" disabled="false"/>
         <x-selectbox name="curso_id" label="Curso" color="success" :data="$cursos" field="nome" disabled="false" :select="$data->curso_id"/>
         <x-selectbox name="turma_id" label="Turma" color="success" :data="$turmas" field="ano" disabled="true" :select="$data->turma_id"/>
         <div class="row">

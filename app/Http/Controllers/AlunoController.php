@@ -88,8 +88,19 @@ class AlunoController extends Controller {
     }
 
     public function edit(string $id) {
-        // $data = $this->repository->findById($id);
-        // retorna, para o usuário, a view de edição de Aluno - passa objeto $data
+        $cursos = (new CursoRepository())->selectAll();
+        $turmas = (new TurmaRepository())->selectAll();
+        $data = $this->repository->findById($id);
+
+        if(isset($cursos) && isset($turmas) && isset($data)) {
+            return view('aluno.edit', compact(['data', 'cursos', 'turmas']));
+        }
+        return view('message')
+                    ->with('template', "main")
+                    ->with('type', "danger")
+                    ->with('titulo', "OPERAÇÃO INVÁLIDA")
+                    ->with('message', "Não foi possível efetuar o procedimento!")
+                    ->with('link', "aluno.index");
     }
 
     public function update(Request $request, string $id) {
@@ -105,10 +116,15 @@ class AlunoController extends Controller {
             $obj->curso()->associate($objCurso);
             $obj->turma()->associate($objTurma);
             $this->repository->save($obj);
-            return "<h1>Update- OK!</h1>";
+            return redirect()->route('aluno.index');
         }
         
-        return "<h1>Update - Not found Curso or Turma!</h1>";
+        return view('message')
+                ->with('template', "main")
+                ->with('type', "danger")
+                ->with('titulo', "OPERAÇÃO INVÁLIDA")
+                ->with('message', "Não foi possível efetuar o procedimento!")
+                ->with('link', "aluno.index");
     }
 
     public function destroy(string $id){
