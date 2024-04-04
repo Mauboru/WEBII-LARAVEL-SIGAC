@@ -13,7 +13,7 @@ class Aluno extends Model {
     public function user() {
         return $this->belongsTo('App\Models\User');
     }
-    
+
     public function curso() {
         return $this->belongsTo('App\Models\Curso');
     }
@@ -23,10 +23,10 @@ class Aluno extends Model {
     }
 
     public function comprovante() {
-        $this->hasMany('\App\Models\Comprovante');
+        return $this->hasMany('App\Models\Comprovante');
     }
 
     public function declaracao() {
-        $this->hasMany('\App\Models\Declaracao');
+        return $this->hasMany('App\Models\Declaracao');
     }
 }

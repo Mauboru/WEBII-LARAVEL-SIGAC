@@ -50,6 +50,7 @@
 							</li>  
 						</ul> 
 					</li>
+
 					<!-- MENU COORDENADOR -->
 					<li class="sidebar-item nav-item mb-1"> 
 						<a href="#"	class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#coord" aria-expanded="false" aria-controls="coord"> 
@@ -61,7 +62,7 @@
 						</a> 
 						<ul id="coord" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar"> 					
 							<li class="sidebar-item"> 
-								<a href="#" class="sidebar-link"> 
+								<a href="{{ route('site.index') }}" class="sidebar-link"> 
 									<span class="ms-3">Alunos</span> 
 								</a> 
 							</li> 
@@ -107,6 +108,7 @@
 							</li>  
 						</ul> 
 					</li>
+
 					<!-- MENU PROFESSOR -->
 					<li class="sidebar-item nav-item mb-1"> 
 						<a href="#"	class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#prof" aria-expanded="false" aria-controls="prof"> 
@@ -123,6 +125,7 @@
 							</li> 
 						</ul> 
 					</li>
+
 					<!-- MENU ALUNO -->
 					<li class="sidebar-item nav-item mb-1"> 
 						<a href="#"	class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#aluno" aria-expanded="false" aria-controls="aluno"> 
@@ -144,6 +147,7 @@
 							</li> 
 						</ul> 
 					</li>
+
 					<hr>
 					<li class="sidebar-item nav-item mb-1"> 
 						<a href="#"	class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#user" aria-expanded="false" aria-controls="user"> 
