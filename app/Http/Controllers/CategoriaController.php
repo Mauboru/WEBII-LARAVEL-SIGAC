@@ -36,7 +36,6 @@ class CategoriaController extends Controller {
             $this->repository->save($obj);
             return redirect()->route('categoria.index');
         }
-        
         return view('message')
                 ->with('template', "main")
                 ->with('type', "danger")
@@ -51,12 +50,21 @@ class CategoriaController extends Controller {
     }
 
     public function edit(string $id) {
-        // $data = $this->repository->findById($id);
-        // retorna, para o usuário, a view de edição de Categoria - passa objeto $data
+        $data = $this->repository->findById($id);
+
+        if(isset($data)) {
+            $cursos = (new CursoRepository())->selectAll();
+            return view('categoria.edit', compact(['data', 'cursos']));
+        }
+        return view('message')
+                    ->with('template', "main")
+                    ->with('type', "danger")
+                    ->with('titulo', "OPERAÇÃO INVÁLIDA")
+                    ->with('message', "Não foi possível efetuar o procedimento!")
+                    ->with('link', "categoria.index");
     }
 
     public function update(Request $request, string $id) {
-
         $obj = $this->repository->findById($id);
         $objCurso = (new CursoRepository())->findById($request->curso_id);
         
@@ -65,10 +73,15 @@ class CategoriaController extends Controller {
             $obj->maximo_horas = $request->maximo_horas;
             $obj->curso()->associate($objCurso);
             $this->repository->save($obj);
-            return "<h1>Store - OK!</h1>";
+            return redirect()->route('categoria.index');
         }
         
-        return "<h1>Store - Not found Curso!</h1>";
+        return view('message')
+                ->with('template', "main")
+                ->with('type', "danger")
+                ->with('titulo', "OPERAÇÃO INVÁLIDA")
+                ->with('message', "Não foi possível efetuar o procedimento!")
+                ->with('link', "categoria.index");
     }
 
     public function destroy(string $id) {

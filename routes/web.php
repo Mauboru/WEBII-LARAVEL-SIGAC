@@ -25,7 +25,3 @@ Route::resource('/declaracao', 'App\Http\Controllers\DeclaracaoController');
 Route::get('/site/register', 'App\Http\Controllers\AlunoController@register')->name('site.register');
 Route::post('/site/success', 'App\Http\Controllers\AlunoController@storeRegister')->name('site.submit');
 Route::get('/site/index', 'App\Http\Controllers\AlunoController@index')->name('site.index');
-
-//Registro de Categorias
-Route::get('/categoria', 'App\Http\Controllers\CategoriaController@index')->name('categoria.index');
-Route::post('/categoria/create', 'App\Http\Controllers\CategoriaController@store')->name('categoria.create');
