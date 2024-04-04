@@ -4,7 +4,7 @@
     <x-datatable 
         title="Tabela de Eixos" 
         :header="['ID', 'Nome', 'Ações']" 
-        crud="curso" 
+        crud="eixo" 
         :data="$data"
         :fields="['id', 'nome']" 
         :hide="[true, false, false]"
