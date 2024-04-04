@@ -56,7 +56,7 @@ class UserController extends Controller {
             $cursos = (new CursoRepository())->selectAll();
             $roles = (new RoleRepository())->selectAll();
             $nome = (new RoleRepository())->findById($data->role_id)->nome;
-            return view('users.show', compact(['data', 'cursos', 'roles', 'nome']));
+            return view('user.show', compact(['data', 'cursos', 'roles', 'nome']));
         } 
         
         return view('message')
