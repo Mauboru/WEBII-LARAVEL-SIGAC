@@ -23,5 +23,5 @@ Route::resource('/declaracao', 'App\Http\Controllers\DeclaracaoController');
 
 // Registro de Alunos - Site (Visitante)
 Route::get('/site/register', 'App\Http\Controllers\AlunoController@register')->name('site.register');
-Route::post('/site/success', 'App\Http\Controllers\AlunoController@storeRegister')->name('site.submit');
+Route::post('/site/success', 'App\Http\Controllers\AlunoController@storeRegister')->name('site.sucess');
 Route::get('/site/index', 'App\Http\Controllers\AlunoController@index')->name('site.index');
