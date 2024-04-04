@@ -55,8 +55,19 @@ class CursoController extends Controller {
     }
 
     public function edit(string $id) {
-        // $data = $this->repository->findById($id);
-        // retorna, para o usuário, a view de edição de Curso - passa objeto $data
+        $data = $this->repository->findById($id);
+
+        if(isset($data)) {
+            $eixos = (new EixoRepository())->selectAll();
+            $niveis = (new NivelRepository())->selectAll();
+            return view('curso.edit', compact(['data', 'eixos', 'niveis']));
+        }
+        return view('message')
+                    ->with('template', "main")
+                    ->with('type', "danger")
+                    ->with('titulo', "OPERAÇÃO INVÁLIDA")
+                    ->with('message', "Não foi possível efetuar o procedimento!")
+                    ->with('link', "curso.index");
     }
 
     public function update(Request $request, string $id) {
@@ -71,9 +82,14 @@ class CursoController extends Controller {
             $obj->eixo()->associate($objEixo);
             $obj->nivel()->associate($objNivel);
             $this->repository->save($obj);
-            return "<h1>Upate - OK!</h1>";
+            return redirect()->route('curso.index');
         }
-        return "<h1>Upate - Not found Curso or Eixo or Nível!</h1>";
+        return view('message')
+            ->with('template', "main")
+            ->with('type', "danger")
+            ->with('titulo', "OPERAÇÃO INVÁLIDA")
+            ->with('message', "Não foi possível efetuar o procedimento!")
+            ->with('link', "curso.index");
     }
 
     public function destroy(string $id) {
