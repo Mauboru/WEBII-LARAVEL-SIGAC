@@ -19,15 +19,17 @@ class ComprovanteController extends Controller {
 
     public function index() {
         $data = $this->repository->selectAll();
-        return view('comprovante.index', compact('data'));    
+        return view('comprovante.index', compact('data'));  
     }
 
     public function create() {
-        // retorna, para o usuário, a view de criação de Comprovante
+        $alunos = (new AlunoRepository())->selectAll();
+        $categorias = (new CategoriaRepository())->selectAll();
+        $users = (new UserRepository())->selectAll();
+        return view('comprovante.create', compact(['alunos', 'categorias', 'users']));   
     }
 
     public function store(Request $request) {
-
         $objCategoria = (new CategoriaRepository())->findById($request->categoria_id);
         $objAluno = (new AlunoRepository())->findById($request->aluno_id);
         $objUser = (new UserRepository())->findById($request->user_id);
@@ -40,10 +42,14 @@ class ComprovanteController extends Controller {
             $obj->aluno()->associate($objAluno);
             $obj->user()->associate($objUser);
             $this->repository->save($obj);
-            return "<h1>Store - OK!</h1>";
+            return redirect()->route('comprovante.index');
         }
-        
-        return "<h1>Store - Not found Categoria or Aluno or User!</h1>";
+        return view('message')
+                ->with('template', "main")
+                ->with('type', "danger")
+                ->with('titulo', "OPERAÇÃO INVÁLIDA")
+                ->with('message', "Não foi possível efetuar o procedimento!")
+                ->with('link', "comprovante.index");
     }
 
     public function show(string $id) {

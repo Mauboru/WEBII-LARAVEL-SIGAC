@@ -76,10 +76,15 @@ class AlunoController extends Controller {
             $obj->curso()->associate($objCurso);
             $obj->turma()->associate($objTurma);
             $this->repository->save($obj);
-            return "<h1>Store - OK!</h1>";
+            return redirect()->route('aluno.index');
         }
         
-        return "<h1>Store - Not found Curso or Turma!</h1>";
+        return view('message')
+        ->with('template', "main")
+        ->with('type', "danger")
+        ->with('titulo', "OPERAÇÃO INVÁLIDA")
+        ->with('message', "Não foi possível efetuar o procedimento!")
+        ->with('link', "aluno.index");
     }
 
     public function show(string $id) {
