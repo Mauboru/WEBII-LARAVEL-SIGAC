@@ -1,6 +1,6 @@
 @extends('templates/main', ['titulo'=>"CURSO"])
-@section('conteudo')
 
+@section('conteudo')
     <x-datatable 
         title="Tabela de Cursos" 
         :header="['ID', 'Nome', 'Ações']" 
