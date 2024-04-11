@@ -58,12 +58,23 @@ class ComprovanteController extends Controller {
     }
 
     public function edit(string $id) {
-        // $data = $this->repository->findById($id);
-        // retorna, para o usuário, a view de edição de Comprovante - passa objeto $data
+        $data = $this->repository->findById($id);
+
+        if(isset($data)) {
+            $alunos = (new AlunoRepository())->selectAll();
+            $categorias = (new CategoriaRepository())->selectAll();
+            $users = (new UserRepository())->selectAll();
+            return view('comprovante.edit', compact(['data', 'alunos', 'categorias', 'users']));
+        }
+        return view('message')
+                    ->with('template', "main")
+                    ->with('type', "danger")
+                    ->with('titulo', "OPERAÇÃO INVÁLIDA")
+                    ->with('message', "Não foi possível efetuar o procedimento!")
+                    ->with('link', "comprovante.index");
     }
 
     public function update(Request $request, string $id) {
-        
         $obj = $this->repository->findById($id);
         $objCategoria = (new CategoriaRepository())->findById($request->categoria_id);
         $objAluno = (new AlunoRepository())->findById($request->aluno_id);
@@ -76,10 +87,15 @@ class ComprovanteController extends Controller {
             $obj->aluno()->associate($objAluno);
             $obj->user()->associate($objUser);
             $this->repository->save($obj);
-            return "<h1>Update - OK!</h1>";
+            return redirect()->route('comprovante.index');
         }
         
-        return "<h1>Store - Not found Categoria or Aluno or User!</h1>";
+        return view('message')
+                    ->with('template', "main")
+                    ->with('type', "danger")
+                    ->with('titulo', "OPERAÇÃO INVÁLIDA")
+                    ->with('message', "Não foi possível efetuar o procedimento!")
+                    ->with('link', "comprovante.index");
     }
 
     public function destroy(string $id) {
