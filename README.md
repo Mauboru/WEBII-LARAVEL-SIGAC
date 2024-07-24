@@ -1,13 +1,13 @@
 # Projetc SIGAC in LARAVEL
 
-Um site em desenvolvimento para estudo de laravel
+Um site em desenvolvimento para estudo de laravel da aula de Desenvolvimento de Web II
 
-# Bugs
+# Como usar
 
-- Usar o SelectByAllTurmas e o Tablist
-- Ao editar aluno se n mudar curso ele n atualiza
-- Show do aluno da erro ao colocar essas duas linhas
-(<x-textbox name="curso" label="Curso" type="text" :value="$data->curso->nome" disabled="true"/>
-<x-textbox name="turma" label="Turma" type="text" :value="$data->turma->ano" disabled="true"/>)
-- Ao editar um coordenador deveria poder mudar o role?
-- A declaracao quem exige é o professor ou o aluno?
+- Instale a versão mais atual do ```XAMPP```
+- Instale a versão mais recente do ```COMPOSER```
+- Ligue o ```MySQL``` e ```Apache``` do xampp
+- Copie o ```.env.example``` e deixe apenas com o nome ```.env``` e insira os seus dados do banco
+- No seu banco local crie uma database com o nome que você irá inserir no .env
+- Faça as migrations, ```php artisan migrate:fresh --seed``` para seu banco
+- Dê ```php artisan serve``` e abra seu código
