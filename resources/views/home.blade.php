@@ -2,6 +2,6 @@
 
 @section('conteudo')
 
-<span class="fs-4"->Seja bem-vindo<br>Josué Henrique</span>
+<span class="fs-4">Seja bem-vindo <span class="fs-4">Josué Henrique</span></span>
 
 @endsection
