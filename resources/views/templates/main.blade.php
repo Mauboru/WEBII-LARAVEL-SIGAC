@@ -136,7 +136,7 @@
 						</a> 
 						<ul id="aluno" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar"> 					
 							<li class="sidebar-item"> 
-								<a href="" class="sidebar-link"> 
+								<a href="{{route('documento.create')}}" class="sidebar-link"> 
 									<span class="ms-3">Solicitar Horas</span> 
 								</a> 
 							</li> 

@@ -20,6 +20,7 @@ Route::resource('/user', 'App\Http\Controllers\UserController');
 Route::resource('/categoria', 'App\Http\Controllers\CategoriaController');
 Route::resource('/comprovante', 'App\Http\Controllers\ComprovanteController');
 Route::resource('/declaracao', 'App\Http\Controllers\DeclaracaoController');
+Route::resource('/documento', 'App\Http\Controllers\DocumentoController');
 
 // Registro de Alunos - Site (Visitante)
 Route::get('/site/register', 'App\Http\Controllers\AlunoController@register')->name('site.register');
@@ -29,3 +30,6 @@ Route::get('/site/index', 'App\Http\Controllers\AlunoController@index')->name('s
 // Registro de Coordenador
 Route::get('/users/{role}', 'App\Http\Controllers\UserController@getUsersByRole')->name('users.role');
 Route::get('/users/create/{role_id}', 'App\Http\Controllers\UserController@createUsersByRole')->name('users.role.create');
+
+// Registro de Documento
+//Route::get('/solicitar/create', 'App\Http\Controllers\DocumentoController@create');
